@@ -1,0 +1,46 @@
+# kv/main_screen.kv
+<MainScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 10
+        spacing: 10
+
+        BoxLayout:
+            size_hint_y: None
+            height: '50dp'
+            Button:
+                text: 'Додати завдання'
+                on_release:
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'add_edit'
+
+        RecycleView:
+            id: rv
+            viewclass: 'TaskItem'
+            scroll_type: ['bars', 'content']
+            bar_width: 10
+            RecycleBoxLayout:
+                default_size: None, dp(50)
+                default_size_hint: 1, None
+                size_hint_y: None
+                height: self.minimum_height
+                orientation: 'vertical'
+
+<TaskItem>:
+    orientation: 'horizontal'
+    size_hint_y: None
+    height: '50dp'
+    spacing: 10
+    padding: 5
+
+    Label:
+        text: root.text
+        size_hint_x: 0.8
+        text_size: self.size
+        halign: 'left'
+        valign: 'middle'
+    Button:
+        text: 'Деталі'
+        size_hint_x: 0.2
+        on_release:
+            app.show_task_details(root.task_id)

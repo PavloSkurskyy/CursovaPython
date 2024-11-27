@@ -1,0 +1,101 @@
+# kv/task_details.kv
+<TaskDetailsScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 15
+
+        BoxLayout:
+            size_hint_y: None
+            height: '50dp'
+            Button:
+                text: 'Назад'
+                size_hint_x: None
+                width: '100dp'
+                on_release:
+                    root.manager.transition.direction = 'right'
+                    root.manager.current = 'main'
+
+        ScrollView:
+            GridLayout:
+                cols: 1
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: 10
+
+                Label:
+                    text: 'Деталі Завдання'
+                    font_size: '24sp'
+                    size_hint_y: None
+                    height: '40dp'
+
+                BoxLayout:
+                    orientation: 'horizontal'
+                    size_hint_y: None
+                    height: '30dp'
+                    Label:
+                        text: 'Назва:'
+                        bold: True
+                        size_hint_x: 0.3
+                    Label:
+                        id: title_label
+                        text: 'Назва завдання'
+                        size_hint_x: 0.7
+
+                BoxLayout:
+                    orientation: 'horizontal'
+                    size_hint_y: None
+                    height: '30dp'
+                    Label:
+                        text: 'Опис:'
+                        bold: True
+                        size_hint_x: 0.3
+                    Label:
+                        id: description_label
+                        text: 'Опис завдання'
+                        size_hint_x: 0.7
+
+                BoxLayout:
+                    orientation: 'horizontal'
+                    size_hint_y: None
+                    height: '30dp'
+                    Label:
+                        text: 'Категорія:'
+                        bold: True
+                        size_hint_x: 0.3
+                    Label:
+                        id: category_label
+                        text: 'Категорія завдання'
+                        size_hint_x: 0.7
+
+                BoxLayout:
+                    orientation: 'horizontal'
+                    size_hint_y: None
+                    height: '30dp'
+                    Label:
+                        text: 'Час нагадування:'
+                        bold: True
+                        size_hint_x: 0.3
+                    Label:
+                        id: due_time_label
+                        text: '2024-12-31 12:00:00'
+                        size_hint_x: 0.7
+
+        BoxLayout:
+            size_hint_y: None
+            height: '50dp'
+            spacing: 10
+            padding: 10, 0, 10, 0
+
+            Button:
+                text: 'Виконано'
+                on_release:
+                    root.mark_completed()
+            Button:
+                text: 'Редагувати'
+                on_release:
+                    root.edit_task()
+            Button:
+                text: 'Видалити'
+                on_release:
+                    root.delete_task()

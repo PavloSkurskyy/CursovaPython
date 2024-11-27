@@ -1,0 +1,75 @@
+# kv/add_edit_task.kv
+<AddEditTaskScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 15
+
+        BoxLayout:
+            size_hint_y: None
+            height: '50dp'
+            Button:
+                text: 'Назад'
+                size_hint_x: None
+                width: '100dp'
+                on_release:
+                    root.manager.transition.direction = 'right'
+                    root.manager.current = 'main'
+
+        ScrollView:
+            GridLayout:
+                cols: 1
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: 10
+
+                Label:
+                    text: 'Назва завдання:'
+                    size_hint_y: None
+                    height: '30dp'
+                TextInput:
+                    id: title_input
+                    hint_text: 'Введіть назву завдання'
+                    multiline: False
+                    size_hint_y: None
+                    height: '40dp'
+
+                Label:
+                    text: 'Опис завдання:'
+                    size_hint_y: None
+                    height: '30dp'
+                TextInput:
+                    id: description_input
+                    hint_text: 'Введіть опис завдання'
+                    multiline: True
+                    size_hint_y: None
+                    height: '100dp'
+
+                Label:
+                    text: 'Категорія:'
+                    size_hint_y: None
+                    height: '30dp'
+                Spinner:
+                    id: category_spinner
+                    text: 'Особисті'
+                    values: ['Особисті', 'Робота', 'Навчання', 'Інше']
+                    size_hint_y: None
+                    height: '40dp'
+
+                Label:
+                    text: 'Час нагадування:'
+                    size_hint_y: None
+                    height: '30dp'
+                TextInput:
+                    id: due_time_input
+                    hint_text: 'Введіть час нагадування (YYYY-MM-DD HH:MM:SS)'
+                    multiline: False
+                    size_hint_y: None
+                    height: '40dp'
+
+                Button:
+                    text: 'Зберегти'
+                    size_hint_y: None
+                    height: '50dp'
+                    on_release:
+                        root.save_task()
